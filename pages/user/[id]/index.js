@@ -1,13 +1,9 @@
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import React from 'react';
 import styles from '../../../styles/Home.module.css'
+import { useRouter } from 'next/router';
 
 const index = ({ user }) => {
   const router = useRouter();
-  const { id } = router.query;
-
-  console.log(user);
-
   return (
     <div className={styles.container}>
       <h1>{user.id}</h1>
@@ -16,7 +12,7 @@ const index = ({ user }) => {
       <p>{user.email}</p>
       <p>{user.address.city}</p>
 
-      <Link href='/'><button>Back</button></Link>
+      <button onClick={() => router.back()}>Back</button>
     </div>
   )
 }

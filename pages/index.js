@@ -4,8 +4,6 @@ import Link from 'next/link';
 
 export default function Home({ data }) {
 
-  console.log(data);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -15,27 +13,10 @@ export default function Home({ data }) {
 
       <main className={styles.main}>
         <h1>Hallo</h1>
-        <ul>
-          {data.map((user, i) => (
-            <li key={user.id}>
-              <Link href='/user/[id]' as={`/user/${user.id}`}>
-                <a>{user.name}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
+
+        <Link href='/user'><a>Static Page</a></Link>
+        <Link href='/posts'>Dynamic Page</Link>
       </main>
     </div>
   )
-}
-
-export const getStaticProps = async () => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/`)
-  const data = await res.json()
-
-  return {
-    props: {
-      data
-    }
-  }
 }
